@@ -11,27 +11,30 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int, int> pii;
 
-int BOTTOM_UP_CUT_ROD(vi &P, int n) {
-    vi R(n + 1, -1);
-    R[0] = 0;
-    
-    for (int j = 1; j <= n; j++) {
-        int q = -1;
-        for (int i = 1; i <= j; i++) {
-            q = max(q, P[i - 1] + R[j - i]);
-        }
-        R[j] = q;
-    }
-
-    return R[n];
-}
-
-
 int main() {
     FAST_IO;
 
-    vi P = {1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
-    cout << BOTTOM_UP_CUT_ROD(P, 4);
+    // Vertices
+    int V = 5;
+
+    vector<vi> adj(V);
+
+    // Edges
+    adj[0].pb(1);
+    adj[0].pb(4);
+    adj[1].pb(2);
+    adj[1].pb(3);
+    adj[1].pb(4);
+    adj[2].pb(3);
+    adj[3].pb(4);
+
+    for (int i = 0; i < V; ++i) {
+        cout << "Vertex " << i << ": ";
+        for (int j : adj[i]) {
+            cout << j << " ";
+        }
+        cout << "\n";
+    }
 
     return 0;
 }
