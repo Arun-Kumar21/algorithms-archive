@@ -11,16 +11,24 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int, int> pii;
 
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
+
 class Solution {
 public:
-    int findClosest(int x, int y, int z) {
-        int zxdist = abs(z-x);
-        int zydist = abs(z-y);
-
-        if (zxdist > zydist) {
-            return 2;
-        } else if (zxdist < zydist) {
-            return 1;
-        } else return 0;
+    ListNode* middleNode(ListNode* head) {
+        ListNode* ff=head;
+        ListNode* sl=head;
+       
+       while (ff && ff->next) {
+           sl = sl->next;
+           ff = ff->next->next;
+       } 
+       
+       return sl;
     }
 };
+
